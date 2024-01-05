@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TASK TRACK 🐈</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Todo</title>
  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   <style>
       body {
       margin: auto;
@@ -27,7 +27,6 @@
         background-position: 0% 0%;
       }
     }
-
     .wave {
       background: rgb(255 255 255 / 25%);
       border-radius: 1000% 1000% 0 0;
@@ -51,6 +50,7 @@
       animation: wave 20s -1s reverse infinite;
       opacity: 0.9;
     }
+
     @keyframes wave {
       2% {
         transform: translateX(1);
@@ -63,11 +63,9 @@
       50% {
         transform: translateX(-50%);
       }
-
       75% {
         transform: translateX(-25%);
       }
-
       100% {
         transform: translateX(1);
       }
@@ -75,31 +73,17 @@
   </style>
 </head>
 <body>
-    <div style="margin-top: 50px;" class="ui container">
-        <h1 class="ui center aligned icon header">
-  <i class="circular pencil alternate icon"></i>
-        <h1 class="ui center aligned header">TASK TRACK</h1>
-        <form class="ui form" action="/add" method="post">
-            <div class="field">
-                <label>Enter To-do Title</label>
-                <input type="text" name="title" placeholder="Enter Todo..."><br>
-            </div>
-            <button class="ui blue button" type="submit">Add</button>
-        </form>
-        <hr>
-        {% for todo in todo_list %}
-        <div class="ui segment">
-            <p class="ui big header">{{todo.id }} | {{ todo.title }}</p>
-            {% if todo.complete == False %}
-            <span class="ui gray label">Not Complete</span>
-            {% else %}
-            <span class="ui green label">Completed</span>
-            {% endif %}
-            <a class="ui blue button" href="/update/{{ todo.id }}">Mark as Complete ✔️ </a>
-            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
-            <a class="ui green button" href="/edit/{{ todo.id }}">Edit</a>
-        </div>
-        {% endfor %}
-    </div>
+  <div style="margin-top: 50px;" class="ui container">
+    <h1 class="ui center aligned header">Edit Todo</h1>
+
+    <form class="ui form" action="/edit/{{ todo.id }}" method="post">
+      <div class="field">
+        <label>Enter To-do Title</label>
+        <input type="text" name="title" value="{{ todo.title }}">
+      </div>
+      <button class="ui blue button" type="submit">Update</button>
+    </form>
+    <a class="ui red button" href="/">Back to Home</a>
+  </div>
 </body>
 </html>
